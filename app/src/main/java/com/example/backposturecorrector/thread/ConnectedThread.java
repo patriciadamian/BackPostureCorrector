@@ -8,9 +8,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
+import static android.content.ContentValues.TAG;
+
 public class ConnectedThread extends Thread {
 
-    private final static int MESSAGE_READ = 2; // used in bluetooth handler to identify message update
+    public final static int MESSAGE_READ = 2; // used in bluetooth handler to identify message update
 
     private final BluetoothSocket mmSocket;
     private final InputStream mmInStream;
@@ -29,6 +31,7 @@ public class ConnectedThread extends Thread {
             tmpIn = socket.getInputStream();
             tmpOut = socket.getOutputStream();
         } catch (IOException e) {
+            Log.e(TAG, "Socket's create() method failed", e);
         }
 
         mmInStream = tmpIn;
@@ -77,6 +80,7 @@ public class ConnectedThread extends Thread {
         try {
             mmSocket.close();
         } catch (IOException e) {
+            Log.e(TAG, "Could not close socket", e);
         }
     }
 }

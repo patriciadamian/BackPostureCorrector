@@ -13,15 +13,14 @@ import static android.content.ContentValues.TAG;
 
 public class CreateConnectThread extends Thread {
 
-    private final static int CONNECTING_STATUS = 1; // used in bluetooth handler to identify message status
+    public final static int CONNECTING_STATUS = 1; // used in bluetooth handler to identify message status
 
     private final BluetoothSocket mmSocket;
     private final Handler handler;
     private ConnectedThread connectedThread;
 
-    public CreateConnectThread(BluetoothAdapter bluetoothAdapter, String address, Handler handler, ConnectedThread connectedThread) {
+    public CreateConnectThread(BluetoothAdapter bluetoothAdapter, String address, Handler handler) {
         this.handler = handler;
-        this.connectedThread = connectedThread;
             /*
             Use a temporary object that is later assigned to mmSocket
             because mmSocket is final.
